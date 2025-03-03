@@ -1,5 +1,5 @@
 {
-  "name": "vite-csp",
+  "name": "csp-toolkit-monorepo",
   "private": true,
   "scripts": {
     "build": "turbo build",
@@ -19,13 +19,13 @@
     "@playwright/test": "^1.45.0",
     "@repo/eslint-config": "workspace:^",
     "@repo/typescript-config": "workspace:^",
-    "@types/node": "^20.14.2",
+    "@types/node": "^22.13.8",
     "prettier": "^3.1.1",
-    "turbo": "^2.0.0",
-    "typescript": "^5.5.2"
+    "turbo": "^2.4.4",
+    "typescript": "^5.8.2"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=23"
   },
-  "packageManager": "pnpm@8.15.6"
+  "packageManager": "pnpm@9.15.1"
 }

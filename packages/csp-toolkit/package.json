@@ -22,7 +22,7 @@
             "import": "./dist/index.esm.js",
             "require": "./dist/index.cjs.js"
         },
-        "./server": {
+        "./node": {
             "types": "./dist/node/types/node.d.ts",
             "import": "./dist/node/node.esm.js",
             "require": "./dist/node/node.cjs.js"
