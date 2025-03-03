@@ -1,16 +1,16 @@
 export default {
-  logo: <span style={{ fontWeight: 600 }}>package-template</span>,
+  logo: <span style={{ fontWeight: 600 }}>csp-toolkit</span>,
   project: {
-    link: "https://github.com/RockiRider/csp",
+    link: "https://github.com/tsotimus/csp-toolkit",
   },
-  docsRepositoryBase: "https://github.com/RockiRider/csp/tree/main/apps/docs",
+  docsRepositoryBase: "https://github.com/tsotimus/csp-toolkit/tree/main/apps/docs",
   useNextSeoProps() {
     return {
-      titleTemplate: "%s | package-template",
-      description: "package-template",
+      titleTemplate: "%s | csp-toolkit",
+      description: "csp-toolkit",
       openGraph: {
-        description: "A vite plugin to handle your CSP",
-        siteName: "package-template",
+        description: "A comprehensive toolkit for working with Content Security Policy (CSP) directives in TypeScript.",
+        siteName: "csp-toolkit",
       },
       twitter: {},
     };
@@ -23,8 +23,8 @@ export default {
     text: (
       <span>
         MIT {new Date().getFullYear()} ©{" "}
-        <a href="https://package-template.tsotne.co.uk" target="_blank">
-          package-template
+        <a href="https://csp-toolkit.tsotne.co.uk" target="_blank">
+          csp-toolkit
         </a>
         .
       </span>

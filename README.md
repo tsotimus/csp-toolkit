@@ -1,12 +1,12 @@
 # Template for Creating Packages
 
-### Getting started with this template
+## Getting started with this template
 
 1. Clone this repository
 
 2. Run `pnpm install` to install the dependencies
 
-3. Search and replace `package-template` with your package name
+3. Search and replace `csp-toolkit` with your package name
 
 4. Update the `package.json` with your package details
 

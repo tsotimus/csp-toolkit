@@ -1,8 +1,13 @@
 import { describe, expect, test } from "vitest";
 import { CSPPolicy } from "../src/types";
-import { DEFAULT_POLICY } from "../src/policy/constants";
-import { mergePolicies } from "../src/policy/core";
-import { createPolicy } from "../src/policy/createPolicy";
+import { mergePolicies, policyToString } from "../src/";
+
+export const DEFAULT_POLICY: CSPPolicy = {
+  "default-src": ["'self'"],
+  "img-src": ["'self'"],
+  "script-src-elem": ["'self'"],
+  "style-src-elem": ["'self'"],
+};
 
 describe("Policy Merging", () => {
   test("Simple Policy Merge", () => {
@@ -13,7 +18,7 @@ describe("Policy Merging", () => {
 
     expect(mergedPolicy).toEqual({
       "default-src": ["'self'"],
-      "img-src": ["'self'", "data:"],
+      "img-src": ["'self'"],
       "script-src-elem": ["'self'"],
       "style-src-elem": ["'self'"],
       "frame-src": ["example.com"],
@@ -29,7 +34,7 @@ describe("Policy Merging", () => {
 
     expect(mergedPolicy).toEqual({
       "default-src": ["'self'"],
-      "img-src": ["'self'", "data:", "example.com"],
+      "img-src": ["'self'", "example.com"],
       "style-src-elem": ["'self'"],
       "script-src-elem": ["'self'"],
     });
@@ -48,10 +53,10 @@ describe("Policy Merging", () => {
   });
 });
 
-describe("Policy Creation", () => {
+describe("Policy to String", () => {
   test("Empty Policy", () => {
     const policy: CSPPolicy = {};
-    const result = createPolicy(policy);
+    const result = policyToString(policy);
     expect(result).toBe("");
   });
 
@@ -59,32 +64,32 @@ describe("Policy Creation", () => {
     const policy: CSPPolicy = {
       "default-src": ["'self'"],
     };
-    const result = createPolicy(policy);
-    expect(result).toBe(" default-src 'self';");
+    const result = policyToString(policy);
+    expect(result).toBe("default-src 'self';");
   });
 
   test("Policy with sha values", () => {
     const policy: CSPPolicy = {
       "script-src": ["'self'", "sha256-abc123"],
     };
-    const result = createPolicy(policy);
-    expect(result).toBe(" script-src 'self' 'sha256-abc123';");
+    const result = policyToString(policy);
+    expect(result).toBe("script-src 'self' 'sha256-abc123';");
   });
 
   test("Policy with wildcard", () => {
     const policy: CSPPolicy = {
       "default-src": ["*"],
     };
-    const result = createPolicy(policy);
-    expect(result).toBe(" default-src *;");
+    const result = policyToString(policy);
+    expect(result).toBe("default-src *;");
   });
 
   test("Policy with data URI", () => {
     const policy: CSPPolicy = {
       "img-src": ["data:"],
     };
-    const result = createPolicy(policy);
-    expect(result).toBe(" img-src data:;");
+    const result = policyToString(policy);
+    expect(result).toBe("img-src data:;");
   });
 
   test("Policy with multiple directives including wildcard and data URI", () => {
@@ -92,7 +97,8 @@ describe("Policy Creation", () => {
       "default-src": ["'self'", "*"],
       "img-src": ["'self'", "data:"],
     };
-    const result = createPolicy(policy);
-    expect(result).toBe(" default-src 'self' *; img-src 'self' data:;");
+    const result = policyToString(policy);
+    expect(result).toBe("default-src 'self' *; img-src 'self' data:;");
   });
 });
+

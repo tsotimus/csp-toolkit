@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://vite-csp.tsotne.co.uk",
+  siteUrl: "https://csp-toolkit.tsotne.co.uk",
   generateRobotsTxt: true, // (optional)
   generateIndexSitemap: false,
   sitemapSize: 100,
@@ -11,11 +11,15 @@ module.exports = {
       priority: "1.0",
     },
     {
-      loc: "/guides/spa",
+      loc: "/guides/react-router",
       priority: 0.9,
     },
     {
-      loc: "/guides/mpa",
+      loc: "/guides/nuxt",
+      priority: 0.9,
+    },
+    {
+      loc: "/guides/next-js",
       priority: 0.9,
     },
     {

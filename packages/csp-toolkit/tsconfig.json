@@ -14,5 +14,5 @@
     "types": ["node"],
     "noEmitOnError": true,
   },
-  "include": ["src/**/*", "tests/**/*", "mocks/**/*"],
+  "include": ["src/**/*", "tests/**/*"],
 }

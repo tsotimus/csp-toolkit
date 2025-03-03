@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "p:build": "turbo build --filter=package-template",
-    "p:test": "turbo test --filter=package-template",
+    "p:build": "turbo build --filter=csp-toolkit",
+    "p:test": "turbo test --filter=csp-toolkit",
     "dev": "turbo dev",
     "preview": "turbo preview",
     "docs:dev": "turbo dev --filter=docs",
@@ -13,7 +13,7 @@
     "test:ui": "pnpm exec playwright test --ui",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "release": "bash scripts/release.sh package-template"
+    "release": "bash scripts/release.sh csp-toolkit"
   },
   "devDependencies": {
     "@playwright/test": "^1.45.0",
