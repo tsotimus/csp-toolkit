@@ -4,19 +4,16 @@
   "scripts": {
     "build": "turbo build",
     "p:build": "turbo build --filter=csp-toolkit",
-    "p:test": "turbo test --filter=csp-toolkit",
+    "test": "turbo test --filter=csp-toolkit",
     "dev": "turbo dev",
     "preview": "turbo preview",
     "docs:dev": "turbo dev --filter=docs",
     "docs:build": "turbo build --filter=docs",
-    "test": "pnpm exec playwright test",
-    "test:ui": "pnpm exec playwright test --ui",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "release": "bash scripts/release.sh csp-toolkit"
   },
   "devDependencies": {
-    "@playwright/test": "^1.45.0",
     "@repo/eslint-config": "workspace:^",
     "@repo/typescript-config": "workspace:^",
     "@types/node": "^22.13.8",
