@@ -3,6 +3,18 @@
 PACKAGE_NAME=$1
 SEMVER=$2
 
+validate_package() {
+  if [ -z "$PACKAGE_NAME" ]; then
+    echo "Error: No package name supplied"
+    exit 1
+  fi
+
+  if [ ! -d "./packages/$PACKAGE_NAME" ]; then
+    echo "Error: Package '$PACKAGE_NAME' not found in packages directory"
+    exit 1
+  fi
+}
+
 check_branch() {
   CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
   if [[ "$CURRENT_BRANCH" != "main" ]]; then
@@ -68,13 +80,13 @@ commit_and_push() {
   VERSION="$(get_new_version)"
   BRANCH_NAME="release/$PACKAGE_NAME-v$VERSION"
   git checkout -b "$BRANCH_NAME"
-  pnpm install --frozen-lockfile
   git add .
   git commit -m"$PACKAGE_NAME-$VERSION"
   git push --set-upstream origin "$BRANCH_NAME"
 }
 
 run_deploy() {
+  validate_package
   check_branch
   update_version
   commit_and_push
