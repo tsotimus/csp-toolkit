@@ -11,7 +11,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/tsotimus/csp",
+        "url": "git+https://github.com/tsotimus/csp-toolkit",
         "directory": "packages/csp-toolkit"
     },
     "homepage": "https://vite-csp.tsotne.co.uk",
