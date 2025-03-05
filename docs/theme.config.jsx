@@ -21,13 +21,14 @@ export default {
   },
   footer: {
     text: (
-      <span>
-        MIT {new Date().getFullYear()} ©{" "}
-        <a href="https://csp-toolkit.tsotne.co.uk" target="_blank">
-          csp-toolkit
-        </a>
-        .
-      </span>
+        <span>
+          GPL-3.0 {new Date().getFullYear()} ©{" "}
+          <a href="https://csp-toolkit.tsotne.co.uk">
+            CSP Toolkit{" - "}
+          </a>
+          Created by <a href="https://tsotne.co.uk" target="_blank">Tsotne</a>
+        </span>
+
     ),
   },
   darkMode: true,

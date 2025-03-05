@@ -2,5 +2,9 @@
   "index": {
     "title": "Home",
     "href": "/"
+  },
+  "api-docs": {
+    "title": "API",
+    "href": "/api-docs"
   }
 }
