@@ -1,0 +1,26 @@
+{
+    "nextjs-app": {
+      "title": "Next.js (App Router)",
+      "href": "/guides/nextjs-app"
+    },
+    "nextjs-pages": {
+      "title": "Next.js (Pages Router)",
+      "href": "/guides/nextjs-pages"
+    },
+    "nuxt": {
+      "title": "Nuxt",
+      "href": "/guides/nuxt"
+    },
+    "react-router": {
+      "title": "React Router",
+      "href": "/guides/react-router"
+    },
+    "remix": {
+      "title": "Remix",
+      "href": "/guides/remix"
+    },
+    "express": {
+      "title": "Express",
+      "href": "/guides/express"
+    }
+  }
