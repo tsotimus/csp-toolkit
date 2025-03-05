@@ -59,4 +59,31 @@ export default defineConfig([
       terser(),
     ],
   },
+  {
+    input: "src/edge.ts", // Secondary entry point for server
+    output: [
+      {
+        file: "dist/edge/edge.esm.js",
+        format: "esm",
+        sourcemap: true,
+      },
+      {
+        file: "dist/edge/edge.cjs.js",
+        format: "cjs",
+        sourcemap: true,
+      },
+    ],
+    plugins: [
+      typescript({
+        tsconfig: "tsconfig.json",
+        declaration: true,
+        declarationDir: "dist/edge/types", // Separate declarations for server
+        include: ["src/edge.ts", "src/types.ts"], // Include node-specific types
+        sourceMap: true,
+      }),
+      // resolve(),
+      // commonjs(),
+      terser(),
+    ],
+  },
 ]);

@@ -18,7 +18,7 @@ export const generateHash = (str: string, algorithm: HashAlgorithms) => {
  * @returns A nonsensical string
  */
 export const generateNonce = () => {
-    const nonce = crypto.randomBytes(32).toString("base64");
+    const nonce = btoa(crypto.randomUUID());
     return nonce;
 }
 

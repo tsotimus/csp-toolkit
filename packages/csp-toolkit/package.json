@@ -26,6 +26,11 @@
             "types": "./dist/node/types/node.d.ts",
             "import": "./dist/node/node.esm.js",
             "require": "./dist/node/node.cjs.js"
+        },
+        "./edge": {
+            "types": "./dist/edge/types/edge.d.ts",
+            "import": "./dist/edge/edge.esm.js",
+            "require": "./dist/edge/edge.cjs.js"
         }
     },
     "type": "module",

@@ -1,20 +1,3 @@
-
-import { Callout } from 'nextra/components'
-
-# Next.js (App Router)
-
-<Callout type="warning">
-    This guide is for Next.js 14 and above.
-</Callout>
-
-## Middleware
-
-Middleware enables you to add headers and generate nonces before the page renders.
-
-Every time a page is viewed, a fresh nonce should be generated. This means that you must use dynamic rendering to add nonces.
-
-```ts
-
 import { NextRequest, NextResponse } from 'next/server'
 import { generateNonce } from 'csp-toolkit/edge'
 import { CSPPolicy, policyToString } from 'csp-toolkit'
@@ -24,7 +7,7 @@ export function middleware(request: NextRequest) {
     const policy: CSPPolicy = {
         "default-src": ["'self'"],
         "script-src": ["'self'", `'nonce-${nonce}'`, "strict-dynamic"],
-        "style-src": ["'self'",],
+        "style-src": ["'self'", "'unsafe-inline'"],
         "img-src": ["'self'", "blob:", "data:"],
         "font-src": ["'self'"],
         "object-src": ["'none'"],
@@ -77,30 +60,3 @@ export const config = {
       },
     ],
   }
-
-```
-
-## Getting the nonce
-
-Reading the nonce from a Server Component using headers:
-
-```tsx
-// app/page.tsx
-
-import Image from "next/image";
-import { headers } from 'next/headers'
-import Script from 'next/script'
- 
-export default async function Page() {
-  const nonce = (await headers()).get('x-nonce') as string
- 
-  return (
-      <Script
-        src="https://www.googletagmanager.com/gtag/js"
-        strategy="afterInteractive"
-        nonce={nonce}
-      />
-  )
-}
-
-```
