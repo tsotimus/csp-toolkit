@@ -1,5 +1,5 @@
 export default {
-  logo: <span style={{ fontWeight: 600 }}>csp-toolkit</span>,
+  logo: <img src="/white_logo.png" alt="csp-toolkit" width={40} height={40} />,
   project: {
     link: "https://github.com/tsotimus/csp-toolkit",
   },
