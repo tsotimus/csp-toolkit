@@ -11,6 +11,14 @@ module.exports = {
       priority: "1.0",
     },
     {
+      loc: "guides/nextjs-app",
+      priority: 0.9,
+    },
+    {
+      loc: "guides/nextjs-pages",
+      priority: 0.9,
+    },
+    {
       loc: "/guides/react-router",
       priority: 0.9,
     },
@@ -19,7 +27,11 @@ module.exports = {
       priority: 0.9,
     },
     {
-      loc: "/guides/next-js",
+      loc: "/guides/remix",
+      priority: 0.9,
+    },
+    {
+      loc: "/guides/express",
       priority: 0.9,
     },
     {
