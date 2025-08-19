@@ -15,7 +15,7 @@
         "directory": "packages/csp-toolkit"
     },
     "homepage": "https://vite-csp.tsotne.co.uk",
-    "license": "GPL-3.0-only",
+    "license": "MIT",
     "exports": {
         ".": {
             "types": "./dist/types/index.d.ts",
