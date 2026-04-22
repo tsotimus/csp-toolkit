@@ -21,11 +21,14 @@ export const generateHash = async (str: string, algorithm: HashAlgorithms) => {
 
     // Generate the hash
     const hashBuffer = await crypto.subtle.digest(webCryptoAlgorithms[algorithm], data);
-    
-    // Convert the hash to base64
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    return btoa(hashHex);
+
+    // Base64 of raw digest bytes (matches Node crypto.createHash().digest("base64"))
+    const bytes = new Uint8Array(hashBuffer);
+    let binary = "";
+    for (let i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i]!);
+    }
+    return btoa(binary);
 };
 
 /**

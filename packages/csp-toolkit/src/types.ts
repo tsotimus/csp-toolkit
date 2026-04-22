@@ -10,14 +10,11 @@ export type FetchDirectives =
     | "font-src"
     | "manifest-src"
     | "media-src"
-    | "object-src"
-    | "report-to"
     | "sandbox"
     | "script-src-attr"
     | "script-src-elem"
     | "style-src-attr"
     | "style-src-elem"
-    | "upgrade-insecure-requests"
     | "worker-src"
     | "fenced-frame-src";
 
