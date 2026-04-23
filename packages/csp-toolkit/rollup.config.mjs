@@ -24,7 +24,13 @@ export default defineConfig([
         tsconfig: "tsconfig.json",
         declaration: true,
         declarationDir: "dist/types", // Output declarations for default entry point here
-        include: ["src/index.ts", "src/types.ts"],
+        include: [
+          "src/index.ts",
+          "src/types.ts",
+          "src/stringify.ts",
+          "src/sources.ts",
+          "src/definePolicy.ts",
+        ],
         sourceMap: true,
       }),
       resolve(),

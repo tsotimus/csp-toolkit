@@ -32,37 +32,102 @@ pnpm add -D csp-toolkit
 
 
 ## Usage
+
+### `definePolicy` (recommended)
+
+Build a policy with **camelCase** directive keys and **unquoted** keyword tokens. The library adds the single quotes CSP expects for keywords like `'self'`. The returned value is a `CSPPolicy` with a `.toString()` helper (same output as `policyToString`).
+
 ```ts
-import { CSPPolicy } from "csp-toolkit" // A type to be used for your CSPPolicy object when declaring one
+import {
+  definePolicy,
+  nonce,
+  self,
+  none,
+  unsafeInline,
+  strictDynamic,
+  blob,
+  data,
+} from "csp-toolkit"
+
+const cspNonce = "…" // e.g. from generateNonce()
+
+const policy = definePolicy({
+  defaultSrc: [self],
+  scriptSrc: [self, nonce(cspNonce), strictDynamic],
+  styleSrc: [self, unsafeInline],
+  imgSrc: [self, blob, data, "https://cdn.example.com"],
+  fontSrc: [self],
+  objectSrc: [none],
+  baseUri: [self],
+})
+
+const header = policy.toString()
+// or: import { policyToString } from "csp-toolkit"; policyToString(policy)
 ```
 
-```ts
-import { CSPKeys } from "csp-toolkit" // Import all typed CSP directives
+**Keyword constants** (optional): `self`, `none`, `unsafeInline`, `unsafeEval`, `unsafeHashes`, `strictDynamic`, `reportSample`, `wasmUnsafeEval`, `inlineSpeculationRules`. You can also use string literals such as `"self"`; both are equivalent.
 
-// Import grouped typed CSP directives
-import { FetchDirectives, DocumentDirectives, NavigationDirectives, ReportingDirectives, OtherDirectives, DeprecatedDirectives } from "csp-toolkit"
+**Scheme constants**: `data`, `blob`, `filesystem`, `mediastream`, `https`, `http`, `ws`, `wss` (values are `data:`, `blob:`, etc.).
+
+**Dynamic sources**: `nonce(value)` and `hash(algorithm, base64Digest)` produce quoted `nonce-…` / `sha*-…` source expressions for use inside `definePolicy` or plain `CSPPolicy` arrays.
+
+### Types
+
+```ts
+import type { CSPPolicy, CSPKeys, HashAlgorithms } from "csp-toolkit"
+import type {
+  FetchDirectives,
+  DocumentDirectives,
+  NavigationDirectives,
+  ReportingDirectives,
+  OtherDirectives,
+  DeprecatedDirectives,
+} from "csp-toolkit"
 ```
 
-```ts
-import { mergePolicies } from "csp-toolkit" // A function to merge 2 objects of type CSPPolicy
-```
+`CSPKeys` is a **TypeScript type only** (there is no runtime list of keys). Use it to narrow directive names in your own helpers.
+
+`definePolicy` input types:
 
 ```ts
-import { policyToString } from "csp-toolkit" // A function that returns a string from an object of type CSPPolicy
+import type { DefinePolicyInput, DefinedPolicy, CamelDirective } from "csp-toolkit"
+import type { CspSource, CspKeyword, CspSchemeToken } from "csp-toolkit"
 ```
 
-```ts
-import { generateHash } from "csp-toolkit/node" // Generates a hash from a string, you can specify the algorithm
-```
+### `mergePolicies`
+
+Merge two `CSPPolicy` objects. Duplicate sources in the same directive are deduplicated.
 
 ```ts
-import { generateNonce } from "csp-toolkit/node" // Generates a nonce for you to use for node.js environments
+import { mergePolicies } from "csp-toolkit"
+
+const merged = mergePolicies(basePolicy, overlay, false)
 ```
 
+### `policyToString`
+
+Turn a `CSPPolicy` into a single header/meta string.
+
 ```ts
-import { generateNonce } from "csp-toolkit/edge" // Generates a nonce for you to use for edge environments
+import { policyToString } from "csp-toolkit"
+
+const header = policyToString(policy)
+```
+
+### Node (hashing, nonce)
+
+```ts
+import { generateHash } from "csp-toolkit/node" // sync; algorithm: sha256 | sha384 | sha512
+import { generateNonce } from "csp-toolkit/node"
+```
+
+### Edge (hashing, nonce)
+
+```ts
+import { generateHash } from "csp-toolkit/edge" // async Web Crypto
+import { generateNonce } from "csp-toolkit/edge"
 ```
 
 <Callout type="info">
-  More docs and functions coming soon!
+  Prefer `definePolicy` for new code; raw `CSPPolicy` objects and `mergePolicies` remain fully supported.
 </Callout>
