@@ -50,9 +50,6 @@ jobs:
           name: package-dist
           path: packages/csp-toolkit/dist
 
-      # Trusted Publishing needs npm >= 11.5.1; @JS-DevTools/npm-publish runs `npm` from PATH
-      - run: npm install -g npm@11.6.2
-
       - uses: JS-DevTools/npm-publish@v4.1.5
         id: publish
         with:
