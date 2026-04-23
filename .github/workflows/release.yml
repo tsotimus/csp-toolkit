@@ -35,6 +35,7 @@ jobs:
     name: "Publish"
     permissions:
       contents: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -48,10 +49,9 @@ jobs:
           name: package-dist
           path: packages/csp-toolkit/dist
 
-      - uses: JS-DevTools/npm-publish@v3
+      - uses: JS-DevTools/npm-publish@v4.1.5
         id: publish
         with:
-          token: ${{ secrets.NPM_AUTH_TOKEN }}
           package: packages/csp-toolkit
 
       - name: Bump version and push tag
